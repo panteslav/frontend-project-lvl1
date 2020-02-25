@@ -15,5 +15,6 @@
     "url": "https://github.com/panteslav/frontend-project-lvl1/issues"
   },
   "homepage": "https://github.com/panteslav/frontend-project-lvl1#readme",
-  "description": ""
+  "description": "",
+  "type": "module"
 }
