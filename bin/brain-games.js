@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-import userName from "./src/index.js";
+import getUserName from "/home/panteslav/Desktop/brainGames/frontend-project-lvl1/src/index.js";
 
 console.log("Welcome to the Brain Games!");
 
-console.log(`Hello ${userName}`);
+getUserName();
 
 
 
