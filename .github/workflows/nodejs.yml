@@ -1,14 +1,30 @@
-name: Greet Everyone
-# This workflow is triggered on pushes to the repository.
-on: [push]
+name: Node CI
+
+on:
+  - push
+  - pull_request
 
 jobs:
   build:
-    # Job name is Greeting
-    name: Linter Check
-    # This job runs on Linux
+
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [13.x]
+
     steps:
-      # This step uses GitHub's hello-world-javascript-action: https://github.com/actions/hello-world-javascript-action
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm install, build
+        run: |
+          make install
+          make build
+        env:
+          CI: true
       - name: Run linter
-        run: npx eslint .
+        run: |
+          make lint
