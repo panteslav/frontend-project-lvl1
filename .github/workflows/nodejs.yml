@@ -11,9 +11,12 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [13.x]
+        node-version: [13.9]
 
     steps:
+      - name: console message
+      - run: echo Hello world!
+      
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
