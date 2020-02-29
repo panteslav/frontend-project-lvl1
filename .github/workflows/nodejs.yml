@@ -21,7 +21,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: npm install, build
         run: npm install
-          env:
+        env:
           CI: true
       - name: Run linter
         run: |
