@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-import greet, { playEven } from '../src/index.js';
+import playEven from '../src/Games/brain-even.js';
 
-greet();
 playEven();
