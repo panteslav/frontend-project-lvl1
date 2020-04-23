@@ -9,12 +9,14 @@ export default () => {
     return array;
   };
 
+  const progressionLength = 10;
+
   const generateProgression = () => {
     const progression = [];
     const firstNum = _.random(0, 500);
     const ratio = _.random(0, 500);
 
-    for (let i = 0, n = firstNum; i < 10; i += 1, n += ratio) {
+    for (let i = 0, n = firstNum; i < progressionLength; i += 1, n += ratio) {
       progression.push(n);
     }
     return removeOneElement(progression).join(' ');
@@ -26,7 +28,7 @@ export default () => {
     const arr = expression.split(' ');
     const blankPosition = arr.indexOf('..', 0);
     let correctAnswer;
-    const ratio = blankPosition > 5 ? arr[1] - arr[0] : arr[9] - arr[8];
+    const ratio = blankPosition > (progressionLength / 2) ? arr[1] - arr[0] : arr[9] - arr[8];
 
 
     if (blankPosition > 5) correctAnswer = +arr[blankPosition - 1] + ratio;
