@@ -11,7 +11,7 @@ export default (instructionText, getQuestionExpression, getCorrectAnswer) => {
 
   const printInstruction = () => console.log(instructionText);
 
-  const playNewRound = () => {
+  const play = () => {
     const currentQuestionExpression = getQuestionExpression();
     const correctAnswer = getCorrectAnswer(currentQuestionExpression);
 
@@ -31,12 +31,16 @@ export default (instructionText, getQuestionExpression, getCorrectAnswer) => {
 
     printQuestion();
     evaluateUserAnswer();
+
+    while (correctCount < 3) play();
+  };
+
+  const printCongratulations = () => {
+    console.log(`Congratulations, ${userName}!`);
   };
 
   greet();
   printInstruction();
-  while (correctCount < 3) {
-    playNewRound();
-  }
-  console.log(`Congratulations, ${userName}!`);
+  play();
+  printCongratulations();
 };

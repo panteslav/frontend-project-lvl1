@@ -21,21 +21,30 @@ const generateProgression = () => {
   return removeOneElement(progression).join(' ');
 };
 
+const defineRatio = (progression, blank) => {
+  if (blank > (progressionLength / 2)) {
+    return progression[1] - progression[0];
+  }
+
+  return progression[9] - progression[8];
+};
+
 const instructionText = 'What number is missing in the progression?';
-const questionExpression = () => generateProgression();
+const getQuestionExpression = () => generateProgression();
 const defineCorrectAnswer = (expression) => {
-  const arr = expression.split(' ');
-  const blankPosition = arr.indexOf('..', 0);
+  const elements = expression.split(' ');
+  const [firstElement, secondElement] = elements;
+  const blankPosition = elements.indexOf('..', 0);
+  const ratio = defineRatio(elements, blankPosition);
+
   let correctAnswer;
-  const ratio = blankPosition > (progressionLength / 2) ? arr[1] - arr[0] : arr[9] - arr[8];
-
-
-  if (blankPosition > 5) correctAnswer = +arr[blankPosition - 1] + ratio;
-  else correctAnswer = arr[blankPosition + 1] - ratio;
+  if (blankPosition === 0) {
+    correctAnswer = secondElement - ratio;
+  } else correctAnswer = +firstElement + blankPosition * ratio;
 
   return correctAnswer.toString();
 };
 
 export default () => {
-  playGame(instructionText, questionExpression, defineCorrectAnswer);
+  playGame(instructionText, getQuestionExpression, defineCorrectAnswer);
 };
