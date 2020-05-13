@@ -3,7 +3,7 @@ import _ from 'lodash';
 import playGame from '../index.js';
 
 const isPrime = (num) => {
-  if (num === 1) return true;
+  if (num < 2) return false;
 
   let answer = true;
   for (let i = 2; i < Math.ceil(num / 2); i += 1) {
@@ -16,14 +16,17 @@ const isPrime = (num) => {
   return answer;
 };
 
-const instructionText = 'Answer "yes" if given number is prime. Otherwise answer "no".';
-const getQuestionExpression = () => `${_.random(0, 1000)}`;
-const getCorrectAnswer = (expression) => {
-  const num = parseInt(expression, 10);
 
-  return isPrime(num) ? 'yes' : 'no';
+const instructionText = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+
+const getQnA = () => {
+  const questionExpression = _.random(0, 1000);
+  const correctAnswer = isPrime(questionExpression) ? 'yes' : 'no';
+
+  return [questionExpression, correctAnswer];
 };
 
+
 export default () => {
-  playGame(instructionText, getQuestionExpression, getCorrectAnswer);
+  playGame(instructionText, getQnA);
 };

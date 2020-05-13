@@ -1,7 +1,8 @@
 import readlineSync from 'readline-sync';
 
-// general logic
-export default (instructionText, getQuestionExpression, getCorrectAnswer) => {
+const WIN_SCORE = 3;
+
+export default (instructionText, getQnA) => {
   const userName = readlineSync.question('Welcome to the Brain Games!\nPlease, type in your name here ...  ');
   const greet = () => {
     console.log(`Hello, ${userName}!`);
@@ -12,27 +13,29 @@ export default (instructionText, getQuestionExpression, getCorrectAnswer) => {
   const printInstruction = () => console.log(instructionText);
 
   const play = () => {
-    const currentQuestionExpression = getQuestionExpression();
-    const correctAnswer = getCorrectAnswer(currentQuestionExpression);
+    const [question, answer] = getQnA();
 
-    const printQuestion = () => console.log(`Question: ${currentQuestionExpression}`);
+    const printQuestion = () => console.log(`Question: ${question}`);
     const getUserAnswer = () => readlineSync.question('Your answer: ');
+
     const evaluateUserAnswer = () => {
       const userAnswer = getUserAnswer();
-      if (userAnswer === correctAnswer) {
+      if (userAnswer === answer) {
         console.log('Correct!');
         correctCount += 1;
         return;
       }
 
-      console.log(`"${userAnswer}" is a wrong answer ;(. The correct answer is "${correctAnswer}".\nLet's try again, ${userName}!`);
+      console.log(`"${userAnswer}" is a wrong answer ;(. The correct answer is "${answer}".\nLet's try again, ${userName}!`);
       correctCount = 0;
     };
 
     printQuestion();
     evaluateUserAnswer();
 
-    while (correctCount < 3) play();
+    while (correctCount < WIN_SCORE) {
+      play();
+    }
   };
 
   const printCongratulations = () => {

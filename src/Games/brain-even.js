@@ -1,17 +1,22 @@
-// brain-even specific logic
 import _ from 'lodash';
 import playGame from '../index.js';
 
 const instructionText = 'Answer "yes" if the number is even, otherwise answer "no".';
-const getQuestionExpression = () => _.random(1, 1000);
 
-const getCorrectAnswer = (expression) => {
-  if (expression % 2) {
-    return 'no';
+const isEven = (num) => {
+  if (num % 2) {
+    return false;
   }
-  return 'yes';
+  return true;
+};
+
+const getQnA = () => {
+  const question = _.random(1, 1000);
+  const answer = isEven(question) ? 'yes' : 'no';
+
+  return [question, answer];
 };
 
 export default () => {
-  playGame(instructionText, getQuestionExpression, getCorrectAnswer);
+  playGame(instructionText, getQnA);
 };
