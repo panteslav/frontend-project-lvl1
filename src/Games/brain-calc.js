@@ -2,7 +2,7 @@ import _ from 'lodash';
 import playGame from '../index.js';
 
 const operators = ['+', '-', '*'];
-const getRandomSymbol = () => operators[_.random(operators.length - 1)];
+const getRandomOperator = () => operators[_.random(operators.length - 1)];
 
 const getCorrectAnswer = ([firstNum, operator, secondNum]) => {
   let answer;
@@ -27,7 +27,7 @@ const instructionText = 'What is the result of the expression?';
 
 const getQnA = () => {
   const firstOperand = _.random(1, 1000);
-  const operator = getRandomSymbol();
+  const operator = getRandomOperator();
   const secondOperand = _.random(1, 1000);
 
   const questionElements = [firstOperand, operator, secondOperand];
