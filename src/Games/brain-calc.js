@@ -1,13 +1,13 @@
 import _ from 'lodash';
 import playGame from '../index.js';
 
-const symbols = ['+', '-', '*'];
-const getRandomSymbol = () => symbols[_.random(symbols.length - 1)];
+const operators = ['+', '-', '*'];
+const getRandomSymbol = () => operators[_.random(operators.length - 1)];
 
-const getCorrectAnswer = ([firstNum, symbol, secondNum]) => {
+const getCorrectAnswer = ([firstNum, operator, secondNum]) => {
   let answer;
 
-  switch (symbol) {
+  switch (operator) {
     case '+':
       answer = +firstNum + +secondNum;
       break;
@@ -17,7 +17,7 @@ const getCorrectAnswer = ([firstNum, symbol, secondNum]) => {
     case '*':
       answer = firstNum * secondNum;
       break;
-    default: throw new Error(`error while parsing expression ${firstNum} ${symbol} ${secondNum}`);
+    default: throw new Error(`error while parsing expression ${firstNum} ${operator} ${secondNum}`);
   }
 
   return answer.toString();
