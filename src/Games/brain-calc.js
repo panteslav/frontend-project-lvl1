@@ -4,23 +4,23 @@ import playGame from '../index.js';
 const operators = ['+', '-', '*'];
 const getRandomOperator = () => operators[_.random(operators.length - 1)];
 
-const getCorrectAnswer = ([firstNum, operator, secondNum]) => {
+const calculate = (firstOperand, operator, secondOperand) => {
   let answer;
 
   switch (operator) {
     case '+':
-      answer = +firstNum + +secondNum;
+      answer = firstOperand + secondOperand;
       break;
     case '-':
-      answer = firstNum - secondNum;
+      answer = firstOperand - secondOperand;
       break;
     case '*':
-      answer = firstNum * secondNum;
+      answer = firstOperand * secondOperand;
       break;
-    default: throw new Error(`error while parsing expression ${firstNum} ${operator} ${secondNum}`);
+    default: throw new Error(`error while parsing expression ${firstOperand} ${operator} ${secondOperand}`);
   }
 
-  return answer.toString();
+  return answer;
 };
 
 const instructionText = 'What is the result of the expression?';
@@ -30,10 +30,8 @@ const getQnA = () => {
   const operator = getRandomOperator();
   const secondOperand = _.random(1, 1000);
 
-  const questionElements = [firstOperand, operator, secondOperand];
-
-  const answer = getCorrectAnswer(questionElements);
-  const question = questionElements.join(' ');
+  const question = [firstOperand, operator, secondOperand].join(' ');
+  const answer = calculate(firstOperand, operator, secondOperand).toString();
 
   return [question, answer];
 };
