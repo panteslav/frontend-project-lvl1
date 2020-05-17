@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import playGame from '../index.js';
 
-const findGCD = ([num1, num2]) => {
+const findGCD = (num1, num2) => {
   let x = num1;
   let y = num2;
 
@@ -20,9 +20,9 @@ const getQnA = () => {
   const firstOperand = _.random(1, 100);
   const secondOperand = _.random(1, 100);
 
-  const questionElements = [firstOperand, secondOperand];
+  const answer = findGCD(firstOperand, secondOperand).toString();
 
-  const answer = findGCD(questionElements).toString();
+  const questionElements = [firstOperand, secondOperand];
   const question = questionElements.join(', ');
 
   return [question, answer];
