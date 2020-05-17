@@ -3,12 +3,7 @@ import playGame from '../index.js';
 
 const instructionText = 'Answer "yes" if the number is even, otherwise answer "no".';
 
-const isEven = (num) => {
-  if (num % 2) {
-    return false;
-  }
-  return true;
-};
+const isEven = (num) => num % 2 === 0;
 
 const getQnA = () => {
   const question = _.random(1, 1000);
