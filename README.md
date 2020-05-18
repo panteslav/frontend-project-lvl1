@@ -23,7 +23,7 @@ Here you have a chance to challenge yourself in summing, deducting and multiplyi
 ![](gifs/brain-calc.gif)
 
 ## brain-progression
-Take a good look at the mathematical progression and try to figure out what number is missed.
+Take a good look at the arithmetic progression and try to figure out what number is missed.
 ![](gifs/brain-progression.gif)
 
 ## How to install
