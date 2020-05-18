@@ -21,9 +21,7 @@ const getQnA = () => {
   const secondOperand = _.random(1, 100);
 
   const answer = findGCD(firstOperand, secondOperand).toString();
-
-  const questionElements = [firstOperand, secondOperand];
-  const question = questionElements.join(', ');
+  const question = [firstOperand, secondOperand].join(', ');
 
   return [question, answer];
 };
